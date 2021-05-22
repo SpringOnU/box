@@ -32,8 +32,8 @@ export default {
     return {
       // 这是登录表单的数据绑定对象
       loginForm: {
-        username: '',
-        password: ''
+        username: 'admin',
+        password: '123456'
       },
       // 这是表单的验证规则对象
       loginFormRules: {
@@ -58,7 +58,10 @@ export default {
       this.$refs.loginFormRef.resetFields()
     },
     login () {
-      console.log(123)
+      this.$refs.loginFormRef.validate(async valid => {
+        if (!valid) return
+        this.$router.push('/home')
+      })
     }
   }
 }
@@ -67,7 +70,7 @@ export default {
 <style lang="less" scoped>
 // scoped 只在当前组件内生效
     .login_container {
-        background-color: #2b4b6b;
+        background-color: rgb(54, 103, 151);
         height: 736px;
         width: 414px;
     }
